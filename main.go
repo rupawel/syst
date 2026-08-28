@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -6,6 +7,7 @@ import (
 	"os"
 	"time"
 	"fmt"
+	"flag"
 )
 
 func cpuStat() {
@@ -37,5 +39,17 @@ func cpuStat() {
 }
 
 func main() {
-	cpuStat()
+	const SystVersion = "v0.0.1"
+	var version bool
+
+	flag.BoolVar(&version, "v", false, "Prints used version of syst")
+	flag.BoolVar(&version, "version", false, "look for: -v")
+
+	flag.Parse()
+
+	if version {
+		fmt.Printf("version %s" + "\n", SystVersion)
+	} else {
+		cpuStat()
+	}
 }
